@@ -8,6 +8,7 @@ import { SpotlightCard } from "@/components/ui/spotlight";
 import { Spotlight } from "@/components/ui/spotlight";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { FlipBoardRow } from "@/components/ui/flip-board";
 
 const blogPosts = [
   {
@@ -117,31 +118,28 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          MARQUEE
+          FLIP BOARD
          ═══════════════════════════════════════ */}
-      <section className="py-6 border-b border-border/50 overflow-hidden bg-white">
-        <div className="flex animate-marquee">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex items-center shrink-0">
-              {[
-                "Pigment Certified",
-                "Connected Planning",
-                "200+ Users Migrated",
-                "Enterprise Grade",
-                "Toronto, Canada",
-                "FP&A Solutions",
-                "Anaplan Migration",
-                "S&OP Design",
-              ].map((item) => (
-                <span key={`${item}-${i}`} className="flex items-center gap-6 px-6">
-                  <span className="text-xs font-semibold text-slate/30 uppercase tracking-[0.25em] whitespace-nowrap">
-                    {item}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-accent/20" />
-                </span>
-              ))}
+      <section className="py-12 bg-[#0a0a1a] border-y border-white/[0.04] overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6">
+          <FadeIn>
+            <p className="text-center text-xs font-semibold text-white/20 uppercase tracking-[0.3em] mb-5">
+              What We Deliver
+            </p>
+            <div className="flex justify-center">
+              <FlipBoardRow
+                lines={[
+                  "CONNECTED PLANNING",
+                  "PIGMENT IMPLEMENTATION",
+                  "PLATFORM MIGRATION",
+                  "FP&A TRANSFORMATION",
+                  "S&OP DESIGN",
+                ]}
+                className="text-xl md:text-2xl"
+                cycleDuration={3000}
+              />
             </div>
-          ))}
+          </FadeIn>
         </div>
       </section>
 
