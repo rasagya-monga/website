@@ -27,7 +27,7 @@ const posts = [
     title: "A Comprehensive Roadmap to Successful S&OP",
     slug: "a-comprehensive-roadmap-to-successful-s-op",
     excerpt:
-      "S&OP is a structured five-step monthly cycle that brings together sales, operations, finance, and leadership to agree on a single version of the truth.",
+      "S&OP is a structured five-step monthly cycle that brings together sales, operations, finance, and leadership.",
     category: "Planning Strategy",
   },
   {
@@ -66,60 +66,78 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="pt-32 pb-16 px-6 bg-surface">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
-          <p className="text-lg text-slate">
-            Insights on planning, Pigment, and making better decisions.
-          </p>
+      {/* Hero */}
+      <section className="relative animated-gradient-bg pt-36 pb-24 px-6 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern" />
+        <div className="absolute top-20 left-[30%] w-80 h-80 rounded-full bg-accent/10 blur-[100px] animate-float" />
+        <div className="relative max-w-3xl mx-auto text-center">
+          <ScrollFadeIn>
+            <span className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-6 block">Insights</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-5">Blog</h1>
+            <p className="text-lg text-white/50">
+              Insights on planning, Pigment, and making better decisions.
+            </p>
+          </ScrollFadeIn>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Featured post */}
-      <section className="py-12 px-6">
+      {/* Featured */}
+      <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <ScrollFadeIn>
             <Link
               href={`/blog/${featured.slug}`}
-              className="group block bg-gradient-to-br from-navy to-navy-light rounded-2xl p-10 md:p-14 hover:shadow-2xl transition-shadow"
+              className="group relative block rounded-3xl overflow-hidden bg-navy hover-lift"
             >
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-accent/20 text-accent mb-4">
-                {featured.category}
-              </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-accent transition-colors">
-                {featured.title}
-              </h2>
-              <p className="text-white/60 leading-relaxed max-w-2xl">
-                {featured.excerpt}
-              </p>
-              <span className="inline-block mt-6 text-accent font-semibold text-sm">
-                Read Article &rarr;
-              </span>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-teal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 grid-pattern" />
+              <div className="relative p-12 md:p-16">
+                <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-accent/20 text-accent mb-6">
+                  {featured.category}
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 group-hover:text-accent transition-colors duration-300 leading-snug max-w-2xl">
+                  {featured.title}
+                </h2>
+                <p className="text-white/50 leading-relaxed max-w-2xl text-lg">
+                  {featured.excerpt}
+                </p>
+                <span className="inline-flex items-center gap-2 mt-8 text-accent font-semibold group-hover:gap-3 transition-all duration-300">
+                  Read Article
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
             </Link>
           </ScrollFadeIn>
         </div>
       </section>
 
       {/* Grid */}
-      <section className="pb-20 px-6">
+      <section className="pb-28 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rest.map((post, i) => (
             <ScrollFadeIn key={post.slug} delay={i * 100}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col bg-white rounded-2xl border border-border p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full"
+                className="group flex flex-col bg-white rounded-3xl border border-border/80 p-8 hover-lift h-full relative overflow-hidden"
               >
-                <span className="inline-block self-start px-3 py-1 rounded-full text-xs font-semibold bg-surface text-slate mb-4">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-teal scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <span className="inline-block self-start px-3 py-1 rounded-full text-xs font-semibold bg-accent/5 text-accent mb-5">
                   {post.category}
                 </span>
-                <h3 className="text-lg font-bold text-charcoal mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-lg font-bold text-charcoal mb-3 group-hover:text-accent transition-colors duration-300 leading-snug">
                   {post.title}
                 </h3>
                 <p className="text-slate text-sm leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
-                <span className="inline-block mt-4 text-accent text-sm font-semibold">
-                  Read More &rarr;
+                <span className="inline-flex items-center gap-1.5 mt-6 text-accent text-sm font-semibold group-hover:gap-3 transition-all duration-300">
+                  Read More
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </span>
               </Link>
             </ScrollFadeIn>

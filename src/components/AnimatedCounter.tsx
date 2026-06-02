@@ -21,10 +21,10 @@ export function AnimatedCounter({
         if (entry.isIntersecting && !started) {
           setStarted(true);
           const start = performance.now();
-          const duration = 2000;
+          const duration = 2200;
           const animate = (now: number) => {
             const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
+            const eased = 1 - Math.pow(1 - progress, 4);
             setCount(Math.floor(eased * target));
             if (progress < 1) requestAnimationFrame(animate);
           };
@@ -38,12 +38,12 @@ export function AnimatedCounter({
   }, [target, started]);
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-5xl font-bold text-accent">
+    <div ref={ref} className="text-center group">
+      <div className="text-6xl md:text-7xl font-bold gradient-text mb-3 transition-transform duration-300 group-hover:scale-105">
         {count}
         {suffix}
       </div>
-      <div className="text-sm font-medium text-slate uppercase tracking-wider mt-2">
+      <div className="text-sm font-semibold text-slate uppercase tracking-[0.15em]">
         {label}
       </div>
     </div>

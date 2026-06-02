@@ -6,10 +6,12 @@ export function ScrollFadeIn({
   children,
   className = "",
   delay = 0,
+  direction = "up",
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  direction?: "up" | "left" | "right" | "scale";
 }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -22,11 +24,18 @@ export function ScrollFadeIn({
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  const transforms = {
+    up: "translateY(50px)",
+    left: "translateX(-50px)",
+    right: "translateX(50px)",
+    scale: "scale(0.95)",
+  };
 
   return (
     <div
@@ -34,8 +43,9 @@ export function ScrollFadeIn({
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "none" : "translateY(30px)",
-        transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
+        transform: visible ? "none" : transforms[direction],
+        transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: "opacity, transform",
       }}
     >
       {children}
