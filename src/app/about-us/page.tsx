@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
-import { ScrollFadeIn } from "@/components/ScrollFadeIn";
-import { GradientCTA } from "@/components/GradientCTA";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About Amvent Consulting | Pigment Implementation Partner",
-  description:
-    "Meet the team behind Amvent Consulting. Founded by a practitioner who led the Pigment transformation at Gusto.",
-};
+import { AnimatedGridBackground, GlowingLine } from "@/components/ui/animated-beam";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/ui/text-reveal";
+import { SpotlightCard } from "@/components/ui/spotlight";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { GradientCTA } from "@/components/GradientCTA";
 
 const values = [
   {
@@ -56,43 +54,41 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative animated-gradient-bg pt-36 pb-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute top-20 right-[20%] w-72 h-72 rounded-full bg-accent/10 blur-[100px] animate-float" />
-        <div className="absolute bottom-20 left-[10%] w-96 h-96 rounded-full bg-teal/8 blur-[120px] animate-float-delayed" />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <ScrollFadeIn>
-            <span className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-6 block">About Us</span>
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+      <section className="relative bg-primary pt-36 pb-24 px-6 overflow-hidden">
+        <AnimatedGridBackground />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <FadeIn>
+            <span className="text-xs font-semibold text-accent uppercase tracking-[0.25em] mb-5 block">About Us</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-5">
               We believe planning should empower teams,{" "}
-              <span className="gradient-text">not slow them down.</span>
+              <span className="bg-gradient-to-r from-accent via-purple to-teal bg-clip-text text-transparent">not slow them down.</span>
             </h1>
-            <p className="text-lg text-white/50 leading-relaxed">
+            <p className="text-lg text-white/40 leading-relaxed">
               Amvent Consulting is a technology advisory and systems integration
               firm focused exclusively on Pigment. We help organizations design,
               build, and adopt connected planning systems that actually work.
             </p>
-          </ScrollFadeIn>
+          </FadeIn>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
       </section>
 
       {/* Founder */}
       <section className="py-28 px-6">
         <div className="max-w-5xl mx-auto">
-          <ScrollFadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
-              <div className="md:col-span-2 flex flex-col items-center md:items-start">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
+            <FadeIn className="md:col-span-2" direction="left">
+              <div className="flex flex-col items-center md:items-start">
                 <div className="relative">
-                  <div className="w-56 h-56 rounded-3xl bg-gradient-to-br from-accent/20 via-teal/10 to-accent/5 flex items-center justify-center border border-accent/10">
-                    <span className="text-7xl font-bold gradient-text">RM</span>
+                  <div className="w-56 h-56 rounded-3xl bg-gradient-to-br from-accent/20 via-teal/10 to-accent/5 flex items-center justify-center border border-border/80">
+                    <span className="text-7xl font-bold bg-gradient-to-r from-accent via-purple to-teal bg-clip-text text-transparent">RM</span>
                   </div>
-                  <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-2xl bg-navy flex items-center justify-center">
+                  <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-2xl bg-primary flex items-center justify-center">
                     <span className="text-2xl">&#x1f91d;</span>
                   </div>
                 </div>
                 <div className="mt-6 text-center md:text-left">
-                  <h3 className="text-xl font-bold">Rasagya Monga</h3>
+                  <h3 className="text-xl font-bold tracking-tight">Rasagya Monga</h3>
                   <p className="text-slate text-sm">Founder & Principal Consultant</p>
                   <a
                     href="https://ca.linkedin.com/company/amventconsulting"
@@ -107,81 +103,85 @@ export default function AboutPage() {
                   </a>
                 </div>
               </div>
-              <div className="md:col-span-3">
-                <span className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4 block">
-                  Our Story
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
-                  Built by a practitioner,
-                  <br />
-                  <span className="text-slate">not a salesperson.</span>
-                </h2>
-                <div className="space-y-5 text-slate leading-relaxed text-[15.5px]">
-                  <p>
-                    Before founding Amvent, Rasagya led the enterprise planning
-                    transformation at Gusto — migrating the company from Anaplan
-                    to Pigment and scaling the platform to <strong className="text-charcoal">200+ active users</strong> across
-                    finance, sales, and operations.
-                  </p>
-                  <p>
-                    That experience revealed a gap in the market: most consulting
-                    firms treat Pigment as just another tool in their portfolio.
-                    Rasagya founded Amvent to be different — a firm that goes
-                    deep on Pigment, delivers with senior practitioners, and
-                    measures success by <strong className="text-charcoal">adoption, not just go-live.</strong>
-                  </p>
-                  <p>
-                    Based in Toronto, Amvent works with organizations across
-                    North America to make connected planning a reality.
-                  </p>
-                </div>
+            </FadeIn>
+            <FadeIn className="md:col-span-3" direction="right" delay={0.15}>
+              <span className="text-xs font-semibold text-accent uppercase tracking-[0.25em] mb-4 block">
+                Our Story
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight tracking-tight">
+                Built by a practitioner,
+                <br />
+                <span className="text-slate">not a salesperson.</span>
+              </h2>
+              <div className="space-y-5 text-slate leading-relaxed text-[15.5px]">
+                <p>
+                  Before founding Amvent, Rasagya led the enterprise planning
+                  transformation at Gusto — migrating the company from Anaplan
+                  to Pigment and scaling the platform to <strong className="text-charcoal">200+ active users</strong> across
+                  finance, sales, and operations.
+                </p>
+                <p>
+                  That experience revealed a gap in the market: most consulting
+                  firms treat Pigment as just another tool in their portfolio.
+                  Rasagya founded Amvent to be different — a firm that goes
+                  deep on Pigment, delivers with senior practitioners, and
+                  measures success by <strong className="text-charcoal">adoption, not just go-live.</strong>
+                </p>
+                <p>
+                  Based in Toronto, Amvent works with organizations across
+                  North America to make connected planning a reality.
+                </p>
               </div>
-            </div>
-          </ScrollFadeIn>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
+      <GlowingLine />
+
       {/* Values */}
-      <section className="py-28 px-6 bg-surface relative overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-30" />
-        <div className="relative max-w-6xl mx-auto">
-          <ScrollFadeIn>
+      <section className="py-28 px-6 bg-primary relative overflow-hidden">
+        <AnimatedGridBackground />
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <FadeIn>
             <div className="text-center mb-16">
-              <span className="text-sm font-semibold text-accent uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-xs font-semibold text-accent uppercase tracking-[0.25em] mb-5 block">
                 Our Principles
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold">Our Values</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Our Values</h2>
             </div>
-          </ScrollFadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {values.map((v, i) => (
-              <ScrollFadeIn key={v.title} delay={i * 100}>
-                <div className="group flex gap-6 p-8 bg-white rounded-3xl border border-border/80 hover-lift">
-                  <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-teal/10 flex items-center justify-center text-accent group-hover:from-accent/20 group-hover:to-teal/20 transition-all duration-500">
-                    {v.icon}
+          </FadeIn>
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {values.map((v) => (
+              <StaggerItem key={v.title}>
+                <SpotlightCard className="h-full">
+                  <div className="flex gap-6">
+                    <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-teal/20 flex items-center justify-center text-accent">
+                      {v.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-2 tracking-tight">{v.title}</h3>
+                      <p className="text-white/40 leading-relaxed text-[15px]">
+                        {v.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-2">{v.title}</h3>
-                    <p className="text-slate leading-relaxed text-[15px]">
-                      {v.description}
-                    </p>
-                  </div>
-                </div>
-              </ScrollFadeIn>
+                </SpotlightCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 
       {/* Partnership */}
       <section className="py-28 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <ScrollFadeIn direction="scale">
+          <FadeIn>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10 mb-6">
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
               <span className="text-sm text-accent font-medium">Certified Partner</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5">
+            <h2 className="text-3xl md:text-4xl font-bold mb-5 tracking-tight">
               Official Pigment
               <br />
               Implementation Partner
@@ -192,7 +192,7 @@ export default function AboutPage() {
               expertise and proven track record make us a trusted extension of
               the Pigment ecosystem.
             </p>
-          </ScrollFadeIn>
+          </FadeIn>
         </div>
       </section>
 
